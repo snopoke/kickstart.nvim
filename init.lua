@@ -606,7 +606,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        -- ts_ls = [],
       }
 
       -- Ensure the servers and tools above are installed
@@ -620,6 +620,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'lua-language-server', -- Lua Language server
         'stylua', -- Used to format Lua code
+        'typescript-language-server',
         -- You can add other tools here that you want Mason to install
       })
 
@@ -865,6 +866,12 @@ require('lazy').setup({
       })
     end,
   },
+  {
+    'tpope/vim-fugitive',
+    -- You can add configuration options here if needed.
+    -- For example, to set a default for the diff context lines:
+    config = function() vim.opt.diffopt:append 'context:10' end,
+  },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -879,7 +886,9 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
+  vim.keymap.set('n', '|', '<cmd>Neotree toggle current reveal_force_cwd<CR>'),
+
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
